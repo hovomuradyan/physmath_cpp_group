@@ -1,2 +1,0 @@
-D:\design patterns\physmath_cpp_group\lesson 1 - fundamental types and bitwise operations\homework1\hw1_sources\Debug\hw1_sources.exe
-D:\design patterns\physmath_cpp_group\lesson 1 - fundamental types and bitwise operations\Samvel\Debug\hw1_sources.exe

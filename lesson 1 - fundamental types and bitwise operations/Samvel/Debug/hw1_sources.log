@@ -1,6 +1,0 @@
-﻿  Source.cpp
-D:\design patterns\physmath_cpp_group\lesson 1 - fundamental types and bitwise operations\Samvel\Source.cpp(69,8): warning C4244: 'initializing': conversion from '__int64' to 'int', possible loss of data
-D:\design patterns\physmath_cpp_group\lesson 1 - fundamental types and bitwise operations\Samvel\Source.cpp(148,20): warning C4018: '<': signed/unsigned mismatch
-D:\design patterns\physmath_cpp_group\lesson 1 - fundamental types and bitwise operations\Samvel\Source.cpp(167,20): warning C4018: '<': signed/unsigned mismatch
-D:\design patterns\physmath_cpp_group\lesson 1 - fundamental types and bitwise operations\Samvel\Source.cpp(307,21): warning C4018: '<': signed/unsigned mismatch
-  hw1_sources.vcxproj -> D:\design patterns\physmath_cpp_group\lesson 1 - fundamental types and bitwise operations\Samvel\Debug\hw1_sources.exe
