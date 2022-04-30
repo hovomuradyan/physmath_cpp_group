@@ -1,0 +1,109 @@
+Задача 6.
+
+В массиве каждое число встречается три раза, кроме одного числа, котороре встречается ровно один раз. 
+С помощью битовых операций найти элемент, который встречается один раз.
+Примеры 
+{2,2,3,2} -> 3
+{0,1,0,1,0,1,99} -> 99
+
+int singleNumber(vector<int>& nums)
+{
+// Why you use long long as a key type for the map. Our input vector is vector of ints so converting int to long long is a waste of memory
+// but the solution is right
+// and a C++-ic note: If you are not modifying the input object (nums in our case), it is better to pass it as a const reference.
+	map<long long, int> mp;
+	for(int i = 0; i < nums.size(); i++) {
+		mp[nums[i]]++;
+	}
+
+	for(auto u: mp) {
+		if(u.second == 1) {
+			return u.first;
+		}		
+	}
+
+	// stex chi hasnelu
+	return -1;
+}
+
+
+int singleNumber(vector<int>& nums)
+{
+  vector<int> bits(31, 0);
+// Great solution (but again using hard-coded 30, 31 is not a good thing)
+  for(int i = 0; i < nums.size(); i++) {
+    for(int j = 0; j <= 30; j++) {
+      if(nums[i] & (1 << j)) {
+        bits[j]++;
+      }
+    }
+  }
+
+  int answ = 0;
+  for(int i = 0; i <= 30; i++) {
+    if(bits[i] % 3 != 0) {
+      answ |= (1 << i);
+    }
+  }
+
+  return answ;
+}
+
+Задача 7.
+
+Даны два целых числа left и right, которые представляют диапазон [left, left].
+Требуется написать оптимальный алгоритм, который возвращает побитовый and (&) всех чисел в этом диапазоне.
+
+Примеры
+1. left = 5, right = 7
+   вывод: 4
+2. left = 0, right = 0
+   вывод: 0
+3. left = 1, right = 2147483647
+   вывод: 0
+
+void solve() {
+  int left, right;
+  cin >> left >> right;
+// This solution seemed very interesting to me, but this is not working correctly for some cases (since they're the cases when a power of two
+// is in the range and the answer should be zero. 
+// So for example your solution work in cases left == 9 and right == 13, left == 5 and right == 7, but in cases left == 3 and right == 4, left == 7 and right == 9 your solution is not returning zero.
+
+  int answ = 0;
+  for(int i = 30; i >= 0; i--) {
+    if(left & (1 << i) && right & (1 << i) && (right - left) < (1 << i)) {
+      answ |= (1 << i);
+    }
+  }
+
+  cout << answ << endl;
+}
+
+Задача 8. 
+Дано некоторое множество целых чисел (длина множества не превышает 32). Требуется выводить все его подмножества.
+
+Пример
+{0, 2, 3}
+вывод: {}, {0}, {2}, {3}, {0,2}, {0,3}, {2,3}, {0,2,3}
+
+vector<vector<int>> power_set(vector<int> v)
+{
+// Great solution.
+// Can you try to solve this problem without bitwise operations, but with recursion ? 
+  int n = v.size();
+  vector<vector<int>> answ;
+  for(int mask = 0; mask < (1 << n); mask++) {
+    vector<int> currSubset;
+    for(int i = 0; i < n; i++) {
+      if(mask & (1 << i)) {
+        currSubset.push_back(v[i]);
+      }
+    }
+    answ.push_back(currSubset);
+  }
+  return answ;
+}
+
+Ժողովուրդ ջան, երկու բան ասեմ։
+Խնդրում եմ ով git-ում կա, օգտվել գիտի իրա նիկը գրի, որ ես access տամ կոդեր push անելու (ամեն մեկը կարա իրա անունով branch սարքի ու ըտեղ push անի, որ master-ի մեջ չանենք բոլորս)։ Ով չկա,  հեշտ բան ա, գրանցվեք։ Կարաք կարդաք, նայեք ոնց ա օգտագործվում, մնացածն էլ ընթացքում կսովորեք։
+Երկու հոգի արդեն տնայիններ ուղարկել են, մնացածդ էլ խնդրում եմ մինչև երկուշաբթի թեկուզ մաս-մաս ուղարկեք, ով ինչքանը կհասցնի։
